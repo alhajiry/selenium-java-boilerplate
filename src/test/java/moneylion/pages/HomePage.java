@@ -15,11 +15,26 @@ public class HomePage extends BasePage {
        super();
        pageHelper = new PageHelper();
    }
-    private By careerTextLink = By.xpath("//a[contains(@href, '/careers')]");
+    public By careerTextLink = By.xpath("//a[contains(@href, '/careers')]");
 
     public void waitAndClickCareerPage() {
         WebElement element = pageHelper.waitExplicitForElement(careerTextLink, "elementtobeclickable", 10);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).click().perform();
+    }
+
+    public WebElement findHomePageElementWithText(String text, long timeout) {
+        WebElement element = pageHelper.waitExplicitForElementWithText(text, timeout);
+        return element;
+    }
+
+    public void hoverToHomePageElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
+    public void clickHomePageElement(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.click(element).perform();
     }
 }

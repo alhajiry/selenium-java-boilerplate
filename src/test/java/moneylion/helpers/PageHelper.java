@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.reflect.Field;
 import java.time.Duration;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -33,6 +34,13 @@ public class PageHelper extends BasePage {
                 System.out.println("Method Name: waitexplicit-->Wrong expectedCondition passed : " + expectedCondition);
                 break;
         }
+        return element;
+    }
+
+    public WebElement waitExplicitForElementWithText(String text, long time) {
+        WebElement element;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '" + text + "')]")));
         return element;
     }
 
@@ -64,8 +72,8 @@ public class PageHelper extends BasePage {
         boolean bottomBoundary = locationA.getY() <= (locationB.getY() + sizeB.getHeight());
 
 //        boolean isYWithin = locationA.getX() >= locationB.getX() && locationA.getX() <= (locationB.getX() + sizeB.getHeight());
-        System.out.println(locationA.getY());
-        System.out.println(locationB.getY());
+//        System.out.println(locationA.getY());
+//        System.out.println(locationB.getY());
 
         boolean isYwithin = topBoundary && bottomBoundary;
         return isYwithin;

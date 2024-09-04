@@ -1,11 +1,10 @@
-Feature:Test
+Feature: Moneylion Test
 
   @test
-  Scenario: Test Feature
-    Given I visit url
-    When I click a button
-
-  @test2
-  Scenario: Test Feature2
-    Given I visit url
-    When I click a button
+  Scenario: Verify when accessing career page
+    Given I am a new customer
+    When I access the MoneyLion website
+    And I hover on 'About us' and click on 'Careers' at the bottom of the webpage
+    Then I should redirected to MoneyLion's careers page
+    And I should be able to see 'whereWeWorkSiblingElement' displayed next to 'cityGridContainerSiblingElement'
+    And I should be able to see 'whereWeWorkText' displayed next to 'cityGridContainer' according to coordinate
