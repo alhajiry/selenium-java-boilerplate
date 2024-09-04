@@ -7,8 +7,7 @@ public class BasePage {
     protected WebDriver driver;
 
     public BasePage() {
-        WebDriverManager webDriverManager = new WebDriverManager();
-        this.driver = webDriverManager.getDriver();
+        this.driver = WebDriverManager.getDriver();
     }
 
     public WebDriver getDriver() {

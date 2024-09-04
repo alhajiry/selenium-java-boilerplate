@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class WebDriverManager {
     private static WebDriver driver;
 
@@ -31,6 +33,7 @@ public class WebDriverManager {
                     throw new IllegalArgumentException("Browser type not supported: " + browser);
             }
         }
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
@@ -38,7 +41,7 @@ public class WebDriverManager {
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
-            driver = null;
+            driver = null; // Reset the driver to ensure a new instance is created for the next test
         }
     }
 }
